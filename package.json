@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run lint && tsc && node dist",
+    "start": "npm run lint && tsc && node dist/server.js",
+    "dev": "npm run lint && tsc && nodemon src/server.ts",
     "test": "mocha --require ts-node/register 'test/**/*.test.ts'",
     "lint": "tslint -p ."
   },
@@ -20,7 +21,8 @@
   },
   "homepage": "https://github.com/PangNem/TS-Node-Starter#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "nodemon": "^2.0.3"
   },
   "devDependencies": {
     "@types/chai": "^4.2.11",
