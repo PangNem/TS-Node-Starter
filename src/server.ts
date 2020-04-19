@@ -1,5 +1,11 @@
-import app from '../app';
+import app from './app';
+import { errorHandler } from './middlewares/error-handler';
 
-app.listen(3000, () => {
-  console.log('Example app listening on port 3000!');
+const port: number = app.get('port');
+const host: string = app.get('host');
+
+app.use(errorHandler);
+
+app.listen(port, () => {
+  console.log(`Server is: http://${host}:${port}`);
 });
