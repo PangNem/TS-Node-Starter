@@ -1,8 +1,8 @@
 import * as express from 'express';
 const app = express();
 
-app.set('port', process.env.PORT || 3000);
 app.set('host', 'localhost');
+app.set('port', process.env.PORT || 3000);
 
 app.use('/', require('./routes/echo'));
 

@@ -21,8 +21,11 @@
   },
   "homepage": "https://github.com/PangNem/TS-Node-Starter#readme",
   "dependencies": {
+    "@types/bluebird": "^3.5.30",
+    "@types/sequelize": "^4.28.8",
     "express": "^4.17.1",
-    "nodemon": "^2.0.3"
+    "nodemon": "^2.0.3",
+    "sequelize-typescript": "^1.1.0"
   },
   "devDependencies": {
     "@types/chai": "^4.2.11",
