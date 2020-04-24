@@ -1,12 +1,9 @@
-import { Sequelize } from 'sequelize-typescript';
-import { User } from './User';
+import User, { associate as associateUser } from './user';
+export * from './sequelize'; // import와 export를 동시에함
+const db = {
+  User
+};
 
-const sequelize = new Sequelize({
-  dialect: 'sqlite',
-  storage: './db.sqlite',
-  logging: false
-});
+export type dbType = typeof db;
 
-sequelize.addModels([User]);
-
-export { sequelize, Sequelize };
+associateUser(db);
