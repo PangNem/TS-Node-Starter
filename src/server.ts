@@ -2,12 +2,14 @@ import * as http from 'http';
 import app from './app';
 import { sequelize } from './models/sequelize';
 import { Sequelize } from 'sequelize/types';
+import logger from './utils/logger';
+import User from './models/User';
 
 const stopServer = async (
   server: http.Server,
   sequelize: Sequelize
 ) => {
-  console.log(`❌ Stopping Server...`);
+  logger.info(`❌ Stopping Server...`);
 
   server.close();
   await sequelize.close();
@@ -18,7 +20,7 @@ async function startServer () {
   const PORT: number = app.get('port');
 
   const server = app.listen(PORT, () => {
-    console.log(`✅ Server is: http://${HOST}:${PORT}`);
+    logger.info(`✅ Server is: http://${HOST}:${PORT}`);
   });
 
   try {
@@ -32,14 +34,13 @@ async function startServer () {
 
     throw error;
   }
-
 }
 
 startServer()
   .then(() => {
-    console.log('Run Succesfully');
+    logger.info('Run Succesfully');
   })
   .catch((ex: Error) => {
-    console.log('Unable Run:', ex);
+    logger.error('Unable Run:', ex);
     process.exit();
   });
