@@ -1,20 +1,45 @@
+import * as http from 'http';
 import app from './app';
-import { errorHandler } from './middlewares/error-handler';
-import { sequelize } from './models';
+import { sequelize } from './models/sequelize';
+import { Sequelize } from 'sequelize/types';
 
-const host: string = app.get('host');
-const port: number = app.get('port');
+const stopServer = async (
+  server: http.Server,
+  sequelize: Sequelize
+) => {
+  console.log(`Stopping Server...`);
 
-app.use(errorHandler);
+  server.close();
+  await sequelize.close();
+  process.exit();
+};
 
-sequelize.sync({ force: false })
-  .then(() => {
-    console.log('DB Connect Success!');
-  })
-  .catch((err: Error) => {
-    console.error(err);
+async function startServer () {
+  const HOST: string = app.get('host');
+  const PORT: number = app.get('port');
+
+  const server = app.listen(PORT, () => {
+    console.log(`✅ Server is: http://${HOST}:${PORT}`);
   });
 
-app.listen(port, () => {
-  console.log(`✅ Server is: http://${host}:${port}`);
-});
+  try {
+    await sequelize.authenticate();
+    await sequelize.sync({
+      force: false
+    });
+
+  } catch (e) {
+    await stopServer(server, sequelize);
+
+    throw e;
+  }
+
+}
+
+startServer()
+  .then(() => {
+    console.log('Run Succesfully');
+  })
+  .catch((ex: Error) => {
+    console.log('Unable Run:', ex);
+  });
