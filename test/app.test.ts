@@ -10,4 +10,9 @@ describe('app.test', () => {
     expect(res.text).to.equal('Hello World!');
   });
 
+  it('GET /unknown', async () => {
+    const res = await req.get('/unknown').expect(404);
+    expect(res.body.message).to.equal('Not Found');
+  });
+
 });

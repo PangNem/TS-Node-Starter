@@ -7,11 +7,10 @@ const stopServer = async (
   server: http.Server,
   sequelize: Sequelize
 ) => {
-  console.log(`Stopping Server...`);
+  console.log(`❌ Stopping Server...`);
 
   server.close();
   await sequelize.close();
-  process.exit();
 };
 
 async function startServer () {
@@ -28,10 +27,10 @@ async function startServer () {
       force: false
     });
 
-  } catch (e) {
+  } catch (error) {
     await stopServer(server, sequelize);
 
-    throw e;
+    throw error;
   }
 
 }
@@ -42,4 +41,5 @@ startServer()
   })
   .catch((ex: Error) => {
     console.log('Unable Run:', ex);
+    process.exit();
   });
