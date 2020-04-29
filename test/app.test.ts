@@ -5,8 +5,8 @@ import app from '../src/app';
 describe('app.test', () => {
   const req = request(app);
 
-  it('GET /', async () => {
-    const res = await req.get('/').expect(200);
+  it('GET /hello', async () => {
+    const res = await req.get('/hello').expect(200);
     expect(res.text).to.equal('Hello World!');
   });
 
