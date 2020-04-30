@@ -3,7 +3,6 @@ import app from './app';
 import { sequelize } from './models/sequelize';
 import { Sequelize } from 'sequelize/types';
 import logger from './utils/logger';
-import User from './models/User';
 
 const stopServer = async (
   server: http.Server,

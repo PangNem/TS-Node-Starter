@@ -1,18 +1,25 @@
-import { expect } from 'chai';
 import * as request from 'supertest';
 import app from '../src/app';
 
 describe('app.test', () => {
-  const req = request(app);
+  it('GET /', async () => {
+    const response = await request(app).get('/');
 
-  it('GET /hello', async () => {
-    const res = await req.get('/hello').expect(200);
-    expect(res.text).to.equal('Hello World!');
+    expect(response.status).toBe(200);
+    expect(response.text).toBe('Hello World!');
   });
 
   it('GET /unknown', async () => {
-    const res = await req.get('/unknown').expect(404);
-    expect(res.body.message).to.equal('Not Found');
+    const response = await request(app).get('/unknown').expect(404);
+
+    expect(response.status).toBe(404);
+    expect(response.body.message).toBe('Not Found');
   });
 
+});
+
+describe('Sample Test', () => {
+  it('should test that true === true', () => {
+    expect(true).toBe(true);
+  });
 });
