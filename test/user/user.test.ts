@@ -3,8 +3,8 @@ import app from '../../src/app';
 import sequelize from '../../src/models/sequelize';
 import User from '../../src/models/User';
 
-describe('POST /users', () => {
-  const url = '/users';
+describe('POST /user', () => {
+  const url = '/user';
   const testData = { 'nickname': 'pangnem' };
 
   let testUserId: number;

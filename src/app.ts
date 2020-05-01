@@ -3,7 +3,7 @@ import * as express from 'express';
 const bodyParser = require('body-parser');
 
 import { forwardHandler, errorHandler } from './middlewares/error-handler';
-import usersRouter from './routes/users';
+import userRouter from './routes/user';
 
 const app = express();
 const prod: boolean = process.env.NODE_ENV === 'production';
@@ -18,7 +18,7 @@ app.get('/', (req, res, next) => {
   res.send('Hello World!');
 });
 
-app.use('/users', usersRouter);
+app.use('/user', userRouter);
 
 app.use(forwardHandler);
 app.use(errorHandler);

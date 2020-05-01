@@ -31,6 +31,7 @@
     "reflect-metadata": "^0.1.13",
     "sequelize": "^5.21.7",
     "sequelize-cli": "^5.5.1",
+    "typedi": "^0.8.0",
     "winston": "^3.2.1"
   },
   "devDependencies": {
@@ -43,7 +44,7 @@
     "@types/validator": "^13.0.0",
     "chai": "^4.2.0",
     "is-number": "^7.0.0",
-    "jest": "^25.5.1",
+    "jest": "^25.5.3",
     "supertest": "^4.0.2",
     "ts-jest": "^25.4.0",
     "ts-node": "^8.8.2",
