@@ -29,7 +29,7 @@ describe('POST /user', () => {
         .send(testData);
 
       expect(response.status).toBe(201);
-      expect(response.body.nickname).toBe('pangnem');
+      expect(response.body.data.nickname).toBe('pangnem');
     });
   });
   describe('유저 생성 실패시', () => {

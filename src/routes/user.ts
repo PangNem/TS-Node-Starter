@@ -21,7 +21,9 @@ router.post('/',
       const { id, nickname, createdAt, updatedAt } = await userServiceInstance.createUser(userDTO);
 
       return res.status(201).json({
-        id, nickname, createdAt, updatedAt
+        data: {
+          id, nickname, createdAt, updatedAt
+        }
       });
     } catch (error) {
       logger.error(error);
