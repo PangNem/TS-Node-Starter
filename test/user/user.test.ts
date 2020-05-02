@@ -32,4 +32,13 @@ describe('POST /user', () => {
       expect(response.body.nickname).toBe('pangnem');
     });
   });
+  describe('유저 생성 실패시', () => {
+    test('형식에 맞지 않는 데이터 요청시 422 반환', async () => {
+      const response = await request(app)
+        .post(url)
+        .send({ 'qwer': 'asdf' });
+
+      expect(response.status).toBe(422);
+    });
+  });
 });

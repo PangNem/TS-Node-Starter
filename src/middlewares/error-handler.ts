@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 
 interface Err extends Error {
   status: number;
+  message: string;
   data?: any;
 }
 
@@ -11,11 +12,11 @@ export function forwardHandler (req: Request, res: Response, next: NextFunction)
   next(err);
 }
 
-export function errorHandler (err: Err, req: Request, res: Response, next: NextFunction) {
-  res.status(err.status || 500);
-  res.json({
-    message: err.message,
-    status: err.status,
-    data: err.data
+export function errorHandler (error: Err, req: Request, res: Response, next: NextFunction) {
+  const status = error.status || 500;
+  const message = error.message || 'Something went wrong';
+  res.status(status).send({
+    status,
+    message
   });
 }
