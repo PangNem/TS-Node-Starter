@@ -7,10 +7,9 @@ export function validators (schema: Joi.ObjectSchema) {
     const { error } = Joi.validate(req.body, schema);
     const valid: boolean = error == null;
 
-    if (valid) {
-      next();
-    } else {
+    if (!valid) {
       throw INVALID_REQUEST_DATA;
     }
+    next();
   };
 }
