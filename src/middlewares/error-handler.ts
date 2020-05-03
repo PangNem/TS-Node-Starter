@@ -1,18 +1,18 @@
 import { Request, Response, NextFunction } from 'express';
 
-interface Err extends Error {
+interface IError extends Error {
   status: number;
   message: string;
   data?: any;
 }
 
 export function forwardHandler (req: Request, res: Response, next: NextFunction) {
-  let err = new Error('Not Found') as Err;
-  err.status = 404;
-  next(err);
+  let error = new Error('Not Found') as IError;
+  error.status = 404;
+  next(error);
 }
 
-export function errorHandler (error: Err, req: Request, res: Response, next: NextFunction) {
+export function errorHandler (error: IError, req: Request, res: Response, next: NextFunction) {
   const status = error.status || 500;
   const message = error.message || 'Something went wrong';
   res.status(status).send({
