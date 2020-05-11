@@ -1,9 +1,10 @@
 {
-  "name": "ts-node-starter",
+  "name": "typescript-node-starter",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
     "start": "yarn lint && tsc && node dist/server.js",
     "dev": "yarn lint && tsc && nodemon src/server.ts",
     "test": "jest -i",
@@ -13,9 +14,8 @@
     "type": "git",
     "url": "git+https://github.com/PangNem/TS-Node-Starter.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "pangnem",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/PangNem/TS-Node-Starter/issues"
   },
