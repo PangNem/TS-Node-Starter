@@ -1,7 +1,20 @@
-import UserModel from '../models/User';
+import { Service } from 'typedi';
+import { InjectRepository } from 'typeorm-typedi-extensions';
+import { UserRepository } from '../repositories/UserRepository';
+import { CreateUserDTO } from '../dtos/UserDto';
+import { User } from '../entities/User';
 
-export default class UserService {
-  createUser (user: { nickname: string; }) {
-    return UserModel.create({ nickname: user.nickname });
+@Service()
+export class UserService {
+  constructor (
+    @InjectRepository()
+    private userRepository: UserRepository
+  ) { }
+
+  public async createUser (createUserDto: CreateUserDTO): Promise<User> {
+    const user = createUserDto.toEntity();
+    const newUser = await this.userRepository.save(user);
+
+    return newUser;
   }
 }
